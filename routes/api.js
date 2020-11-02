@@ -11,14 +11,14 @@ router.get("/api/all", (req, res) => {
     });
 });
 
-// router.get("/api/all", ({ body }, res) => {
-//   Activity.create(body)
-//     .then(dbTransaction => {
-//       res.json(dbTransaction);
-//     })
-//     .catch(err => {
-//       res.status(400).json(err);
-//     });
-// });
+router.post("/submit", ({ body }, res) => {
+  Activity.create(body)
+    .then(dbActivity => {
+      res.json(dbActivity);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+});
 
 module.exports = router;
