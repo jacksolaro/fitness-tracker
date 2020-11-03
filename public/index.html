@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Welcome to Fitness Tracker</h1>
+
+    <form action="/create-activity" method="POST">
+        <h2>Create a New Exercise</h2>
+        <input type="text" name="name" placeholder="Exercise Name">
+        <input type="text" name="type" placeholder="Exercise Type">
+        <input type="number" name="weight" placeholder="Weight">
+        <input type="number" name="sets" placeholder="Number of Sets">
+        <input type="number" name="reps" placeholder="Number of Reps">
+        <input type="number" name="duration" placeholder="Duration">
+        <input type="number" name="distance" placeholder="Distance">
+        <button type="submit" id="exerciseBtn">Create Exercise</button>
+    </form>
+
+    <form action="/create-workout" method="POST">
+        <h2>Create a New Work Out</h2>
+        <input type="text" name="workoutName" placeholder="Work Out Name">
+        <button type="submit" id="workoutBtn">Create Workout</button>
+    </form>
+
+    <h2>Your Workouts:</h2>
+    <div id="workoutHistory">
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+        integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+        <script src="/index.js"></script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const activitySchema = new Schema({
+const ActivitySchema = new Schema({
   name: {
     type: String,
     trim: true,
@@ -29,6 +29,6 @@ const activitySchema = new Schema({
   }
 });
 
-const Activity = mongoose.model("Activity", activitySchema);
+const Activity = mongoose.model("Activity", ActivitySchema);
 
 module.exports = Activity;
