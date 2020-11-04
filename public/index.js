@@ -1,59 +1,86 @@
 const workoutBtn = $("#workoutBtn");
 const exerciseBtn = $("#exerciseBtn");
-const workoutHistory = $("#workoutHistory");
+const workoutHistory = $("#workoutsBlock");
+const selectWorkout = $("#selectWorkout");
+const workoutForm = $("#workoutForm");
 
 fetch("/api/workouts")
-  .then(response => response.json())
-  .then(data => {
-    data.forEach(workout => {
-        const newWorkoutEl = $("<div>")
-        newWorkoutEl.addClass("card m-2")
-        newWorkoutEl.attr("id",workout._id)
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(workout => {
+            const newWorkoutEl = $("<div>")
+            const newWorkoutOption = $("<option>")
 
-        const workoutName = $("<h3>")
-        workoutName.text(workout.name)
+            newWorkoutEl.addClass("card m-2 shadow p-3")
+            newWorkoutEl.attr("id", workout._id)
 
-        newWorkoutEl.append(workoutName)
-        workout.activities.forEach(activity => {
-            console.log(activity)
-            const newActivity = $("<div>")
-            newActivity.addClass("card m-2")
-            newActivity.attr("id",activity._id)
+            newWorkoutOption.text(workout.name)
+            newWorkoutOption.attr("id", workout._id)
 
-            const name = $("<h4>")
-            const type = $("<p>")
-            const weight = $("<p>")
-            const sets = $("<p>")
-            const reps = $("<p>")
-            const duration = $("<p>")
-            const distance = $("<p>")
-            const deleteBtn = $("<button>")
-            
-            name.text(activity.name)
-            type.text(activity.type)
-            weight.text(activity.weight)
-            sets.text(activity.sets)
-            reps.text(activity.reps)
-            duration.text(activity.duration)
-            distance.text(activity.distance)
-            deleteBtn.text("Delete")
 
-            newActivity.append(name,type,weight,sets,reps,duration,distance,deleteBtn)
-            newWorkoutEl.append(newActivity)
-            
+
+            const workoutName = $("<h3>")
+            workoutName.text(workout.name)
+
+            newWorkoutEl.append(workoutName)
+            workout.activities.forEach(activity => {
+                // console.log(activity)
+                const newActivity = $("<div>")
+                newActivity.addClass("card m-2 shadow p-3")
+                newActivity.attr("id", activity._id)
+
+                const name = $("<h4>").text(activity.name)
+                const type = $("<p>").text(activity.type)
+                const weight = $("<p>").text(`Weight: ${activity.weight}`)
+                const sets = $("<p>").text(`Sets: ${activity.sets}`)
+                const reps = $("<p>").text(`Reps: ${activity.reps}`)
+                const duration = $("<p>").text(`Duration: ${activity.duration}`)
+                const distance = $("<p>").text(`Distance: ${activity.Distance}`)
+                // const deleteBtn = $("<button>")
+
+                // deleteBtn.text("Delete")
+
+                // deleteBtn.addClass("deleteBtn")
+                // deleteBtn.attr("id",activity._id)
+
+                newActivity.append(name, type, weight, sets, reps, duration, distance)
+                newWorkoutEl.append(newActivity)
+
+            })
+            selectWorkout.append(newWorkoutOption)
+            workoutHistory.append(newWorkoutEl)
         })
-        workoutHistory.append(newWorkoutEl)
-    })
-    // data[0].activities.forEach(workout => {
-
-    //     const newCardEl = $("<div>")
-    //     newCardEl.addClass("card")
+    });
 
 
-    //     const title = $("<h3>")
-    //     title.text(workout.name)
+//   Delete Request when Delete Button is pressed
+//   $(".deleteBtn").on("click", function(event) {
+//     var id = $(this).data("id");
+//     console.log("click")
+//     // Send the DELETE request.
+//     $.ajax("/api/activity/" + id, {
+//       type: "DELETE"
+//     }).then(
+//       function() {
+//         console.log("deleted burger", id);
+//         // Reload the page to get the updated list
+//         location.reload();
+//       }
+//     );
+//   });
 
-    //     newCardEl.append(title)
-    //     workoutHistory.append(newCardEl)
-    // });
-  });
+workoutBtn.click(function (event) {
+
+    const data = workoutForm.serialize();
+
+    $.ajax("/api/activity", {
+        type: "POST",
+        data: data
+    }).then(
+        function () {
+            // Reload the page to get the updated list
+            location.reload();
+        }
+    );
+});
+
