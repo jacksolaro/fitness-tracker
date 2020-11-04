@@ -11,7 +11,7 @@
 <body>
     <h1>Welcome to Fitness Tracker</h1>
 
-    <form action="/create-activity" method="POST">
+    <!-- <form action="/create-activity" method="POST">
         <h2>Create a New Exercise</h2>
         <input type="text" name="name" placeholder="Exercise Name">
         <input type="text" name="type" placeholder="Exercise Type">
@@ -21,11 +21,11 @@
         <input type="number" name="duration" placeholder="Duration">
         <input type="number" name="distance" placeholder="Distance">
         <button type="submit" id="exerciseBtn">Create Exercise</button>
-    </form>
+    </form> -->
 
-    <form action="/create-workout" method="POST">
+    <form action="/api/workout" method="POST">
         <h2>Create a New Work Out</h2>
-        <input type="text" name="workoutName" placeholder="Work Out Name">
+        <input type="text" name="name" placeholder="Work Out Name">
         <button type="submit" id="workoutBtn">Create Workout</button>
     </form>
 
